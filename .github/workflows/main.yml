@@ -1,0 +1,22 @@
+name: My First DevOps Pipeline
+
+# This tells GitHub WHEN to run this automation
+on:
+  push:
+    branches: [ "main" ]
+
+# This tells GitHub WHAT to do
+jobs:
+  run-my-script:
+    runs-on: ubuntu-latest # GitHub will spin up a temporary Linux server!
+    
+    steps:
+      # Step 1: Download our code onto the temporary server
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      # Step 2: Make our script executable and run it
+      - name: Run the shell script
+        run: |
+          chmod +x hello.sh
+          ./hello.sh
